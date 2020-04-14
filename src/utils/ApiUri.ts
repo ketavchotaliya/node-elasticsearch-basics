@@ -1,6 +1,7 @@
 export const ELASTICSEARCH = {
   INDEX: {
     CREATE: '/elasticsearch/index/create',
+    DELETE: '/elasticsearch/index/delete',
   },
   DOCUMENT: {
     ADD: '/elasticsearch/document/add',

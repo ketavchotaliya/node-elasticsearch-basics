@@ -9,4 +9,11 @@ export default (app) => {
     ElasticSearchValidator.createIndex,
     ElasticSearchController.createIndex
   );
+  
+  // Drop Index
+  app.delete(
+    API_PRE_FIX_V1 + ELASTICSEARCH.INDEX.CREATE,
+    ElasticSearchValidator.createIndex,
+    ElasticSearchController.deleteIndex
+  );
 };

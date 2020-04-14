@@ -25,6 +25,22 @@ class ElasticSearchController {
       createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
     }
   }
+
+  public async deleteIndex(req: Request, res: Response) {
+    try {
+      const { indexName } = req.body;
+
+      // create elasticsearch index
+      await ESClient.indices.delete({
+        index: indexName,
+      });
+
+      createResponse(res, HttpStatus.OK, res.__('Index.deleted'));
+    } catch (e) {
+      logger.error(__filename, 'deleteIndex', '', e);
+      createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+  }
 }
 
 export default new ElasticSearchController();
