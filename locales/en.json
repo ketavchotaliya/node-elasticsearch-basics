@@ -4,13 +4,12 @@
 			"required": "Index name is required.",
 			"valid_length": "Index name must have a valid length."
 		},
-		"user_name": {
-			"required": "User name is required.",
-			"valid_length": "User name must have a valid length."
+		"documentBody": {
+			"required": "Document Body is required."
 		},
-		"user_id": {
-			"required": "User Id is required.",
-			"numeric": "User Id must have a valid number."
+		"documentId": {
+			"required": "Document Id is required.",
+			"numeric": "Document Id must have a valid number."
 		},
 		"role_id": {
 			"required": "Role Id is required.",
@@ -58,45 +57,12 @@
 		"not_found": "Index not found!",
 		"deleted": "Index deleted!"
 	},
-	"User": {
-		"store": "User added successfully!",
+	"Document": {
+		"store": "Document added successfully!",
 		"update": "User updated successfully!",
 		"status_updated %s": "User %s successfully!",
 		"not_found": "User not found.",
 		"already_exists": "User already exists!",
 		"deactivated": "User is not activated. Please contact your admin."
-	},
-	"Auth": {
-		"login_success": "Loged In successfully!",
-		"logout_success": "Log out successfully!",
-		"login_fail": "Email Id or Password is incorrect.",
-		"session_expired": "Session is expired. Try again!",
-		"password_mismatch": "Password could not match with system!",
-		"password_updated": "Password updated successfully!"
-	},
-	"Privilege": {
-		"privileges_not_associated_with_user": "Privileges not associated!",
-		"list_success": "Organization privilege list!",
-		"not_associated_with_org": "Privileges is not associated with organization!",
-		"already_exists": "Privileges you're trying to add is already exists!",
-		"Roles": {
-			"add_success": "Organization role added successfully!",
-			"updated_success": "Organization role updated successfully!",
-			"list_success": "Organization role list!",
-			"not_found": "Role is not found!",
-			"role_not_associated_with_org": "Role is not associated with organization!",
-			"user_not_associated_with_org": "User is not associated with organization!",
-			"already_exists": "Role is already exists!",
-			"User": {
-				"already_exists": "User role already exists!",
-				"not_exists": "User role not exists!",
-				"add_success": "User role added successfully!",
-				"removed_success": "User role removed successfully!"
-			}
-		}
-	},
-	"Menu": {
-		"list_success": "Menu list!"
-	},
-	"VERSION_MISMATCH_DETECTED": "Version mismatch detected!"
+	}
 }
