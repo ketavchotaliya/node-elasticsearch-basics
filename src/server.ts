@@ -19,7 +19,7 @@ const server = createServer(app);
 // create ES Client object
 const ES_Host: string = process.env.ES_HOST || 'http://localhost:9200';
 
-const ESClient = new Client({ node: ES_Host });
+export const ESClient = new Client({ node: ES_Host });
 
 server.listen(port, () => {
   logger.info(__filename, ``, ``, ``, `Server is running on ${port}`);

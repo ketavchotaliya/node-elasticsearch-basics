@@ -1,38 +1,8 @@
 {
 	"VALIDATIONS": {
-		"db_server": {
-			"required": "DB Server is required.",
-			"valid_length": "DB Server must have a valid length."
-		},
-		"db_name": {
-			"required": "DB Name is required.",
-			"valid_length": "DB Name must have a valid length."
-		},
-		"db_port": {
-			"required": "DB Port is required.",
-			"valid_length": "DB Port must have a valid length.",
-			"valid_number": "DB Port must have a valid number."
-		},
-		"db_user": {
-			"required": "DB User is required.",
-			"valid_length": "DB User must have a valid length."
-		},
-		"db_password": {
-			"required": "DB Password is required.",
-			"valid_length": "DB Password must have a valid length."
-		},
-		"purchased_ver": {
-			"required": "Purchase version is required.",
-			"valid_length": "Purchase version must have a valid length.",
-			"valid_number": "Purchase version must have a valid number."
-		},
-		"current_ver": {
-			"required": "Current version is required.",
-			"valid_length": "Current version must have a valid length."
-		},
-		"org_name": {
-			"required": "Organization name is required.",
-			"valid_length": "Organization name must have a valid length."
+		"index_name": {
+			"required": "Index name is required.",
+			"valid_length": "Index name must have a valid length."
 		},
 		"user_name": {
 			"required": "User name is required.",
@@ -83,10 +53,10 @@
 			"required": "Authorization token is required."
 		}
 	},
-	"Organization": {
-		"store": "Organization added successfully!",
-		"admin_role_not_-present": "Organization role is not available in role master.",
-		"not_found": "Organization not found!"
+	"Index": {
+		"store": "Index added successfully!",
+		"not_found": "Index not found!",
+		"deleted": "Index deleted!"
 	},
 	"User": {
 		"store": "User added successfully!",
