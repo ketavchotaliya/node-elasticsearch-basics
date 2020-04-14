@@ -73,6 +73,23 @@ class ElasticSearchController {
       createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
     }
   }
+
+  public async deleteDocumentById(req: Request, res: Response) {
+    try {
+      const { indexName, documentId } = req.body;
+
+      // add ES Document
+      const deleteDocument = await ESClient.delete({
+        index: indexName,
+        id: documentId,
+      });
+
+      createResponse(res, HttpStatus.OK, res.__('Document.deleted'), deleteDocument);
+    } catch (e) {
+      logger.error(__filename, 'deleteDocumentById', '', e);
+      createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+  }
 }
 
 export default new ElasticSearchController();

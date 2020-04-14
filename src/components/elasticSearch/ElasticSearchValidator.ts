@@ -3,7 +3,7 @@ import { createValidationResponse } from '../../utils/helper';
 import { isEmpty, isLength, isNumber } from '../../utils/validator';
 
 class ElasticSearchValidator {
-  public createIndex(req: Request, res: Response, next: NextFunction) {
+  public validateIndexName(req: Request, res: Response, next: NextFunction) {
     const errors: any = {};
     const { indexName } = req.body;
 
@@ -21,20 +21,31 @@ class ElasticSearchValidator {
     }
   }
 
-  public addDocument(req: Request, res: Response, next: NextFunction) {
+  public validateDocumentBody(req: Request, res: Response, next: NextFunction) {
     const errors: any = {};
-    const { documentId, documentBody } = req.body;
+    const { documentBody } = req.body;
+
+    // validation for documentBody key
+    if (isEmpty(documentBody)) {
+      errors.documentBody = res.__('VALIDATIONS.documentBody.required');
+    }
+
+    if (Object.keys(errors).length > 0) {
+      createValidationResponse(res, errors);
+    } else {
+      next();
+    }
+  }
+
+  public validateDocumentId(req: Request, res: Response, next: NextFunction) {
+    const errors: any = {};
+    const { documentId } = req.body;
 
     // validation for documentId key
     if (isEmpty(documentId)) {
       errors.documentId = res.__('VALIDATIONS.documentId.required');
     } else if (!isNumber(documentId)) {
       errors.documentId = res.__('VALIDATIONS.documentId.numeric');
-    }
-
-    // validation for documentBody key
-    if (isEmpty(documentBody)) {
-      errors.documentBody = res.__('VALIDATIONS.documentBody.required');
     }
 
     if (Object.keys(errors).length > 0) {
