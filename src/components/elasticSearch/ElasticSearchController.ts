@@ -91,7 +91,7 @@ class ElasticSearchController {
       createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
     }
   }
-  
+
   public async updateDocumentById(req: Request, res: Response) {
     try {
       const { indexName, documentBody } = req.body;
@@ -102,8 +102,8 @@ class ElasticSearchController {
         index: indexName,
         id: documentId,
         body: {
-          doc: documentBody
-        }
+          doc: documentBody,
+        },
       });
 
       createResponse(res, HttpStatus.OK, res.__('Document.update'), documentDetails);
@@ -112,7 +112,7 @@ class ElasticSearchController {
       createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
     }
   }
-  
+
   public async deleteDocumentById(req: Request, res: Response) {
     try {
       const { indexName, documentId } = req.body;
@@ -126,6 +126,23 @@ class ElasticSearchController {
       createResponse(res, HttpStatus.OK, res.__('Document.deleted'), deleteDocument);
     } catch (e) {
       logger.error(__filename, 'deleteDocumentById', '', e);
+      createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+  }
+
+  public async deleteDocumentByQuery(req: Request, res: Response) {
+    try {
+      const { indexName, documentQuery } = req.body;
+
+      // delete ES Document
+      const deleteDocument = await ESClient.deleteByQuery({
+        index: indexName,
+        body: documentQuery,
+      });
+
+      createResponse(res, HttpStatus.OK, res.__('Document.deleted'), deleteDocument);
+    } catch (e) {
+      logger.error(__filename, 'deleteDocumentByQuery', '', e);
       createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
     }
   }

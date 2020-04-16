@@ -8,6 +8,7 @@ export const ELASTICSEARCH = {
     ADD: '/elasticsearch/document/add',
     UPDATE: '/elasticsearch/document/update/:documentId',
     DELETE: '/elasticsearch/document/delete',
+    DELETE_BY_QUERY: '/elasticsearch/document/delete/by/query',
     GET_BY_ID: '/elasticsearch/document/:documentId',
   },
 };

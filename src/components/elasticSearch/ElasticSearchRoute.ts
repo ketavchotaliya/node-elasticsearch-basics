@@ -54,4 +54,12 @@ export default (app) => {
     ElasticSearchValidator.validateDocumentId,
     ElasticSearchController.deleteDocumentById
   );
+  
+  // delete document by query
+  app.delete(
+    API_PRE_FIX_V1 + ELASTICSEARCH.DOCUMENT.DELETE_BY_QUERY,
+    ElasticSearchValidator.validateIndexName,
+    ElasticSearchValidator.validateDocumentQuery,
+    ElasticSearchController.deleteDocumentByQuery
+  );
 };

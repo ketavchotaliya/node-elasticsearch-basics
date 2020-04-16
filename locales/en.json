@@ -7,6 +7,9 @@
 		"documentBody": {
 			"required": "Document Body is required."
 		},
+		"documentQuery": {
+			"required": "Document Query is required."
+		},
 		"documentId": {
 			"required": "Document Id is required.",
 			"numeric": "Document Id must have a valid number."

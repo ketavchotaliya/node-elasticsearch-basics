@@ -37,6 +37,22 @@ class ElasticSearchValidator {
     }
   }
 
+  public validateDocumentQuery(req: Request, res: Response, next: NextFunction) {
+    const errors: any = {};
+    const { documentQuery } = req.body;
+
+    // validation for documentQuery key
+    if (isEmpty(documentQuery)) {
+      errors.documentQuery = res.__('VALIDATIONS.documentQuery.required');
+    }
+
+    if (Object.keys(errors).length > 0) {
+      createValidationResponse(res, errors);
+    } else {
+      next();
+    }
+  }
+
   public validateDocumentId(req: Request, res: Response, next: NextFunction) {
     const errors: any = {};
     const documentId = req.body.documentId || req.params.documentId || req.query.documentId;
