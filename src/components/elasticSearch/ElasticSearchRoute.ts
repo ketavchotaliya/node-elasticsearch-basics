@@ -62,4 +62,11 @@ export default (app) => {
     ElasticSearchValidator.validateDocumentQuery,
     ElasticSearchController.deleteDocumentByQuery
   );
+  
+  // bulk index the document
+  app.post(
+    API_PRE_FIX_V1 + ELASTICSEARCH.DOCUMENT.BULK_INDEX,
+    ElasticSearchValidator.validateIndexName,
+    ElasticSearchController.bulkIndexDocument
+  );
 };

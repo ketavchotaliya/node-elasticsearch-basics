@@ -74,6 +74,37 @@ class ElasticSearchController {
     }
   }
 
+  public async bulkIndexDocument(req: Request, res: Response) {
+    try {
+      const { indexName } = req.body;
+
+      // Note: We will fetch JSON file from static file path as this is a Demo project we are not doing file upload process
+      // File path: /home/smartsense/Downloads/cities.json (i've thousands of city array of objects)
+      const citiesData = require('/home/smartsense/Downloads/cities.json');
+      let bulkData: any = [];
+
+      // preparing Array of objects for bulk insert the documents
+      citiesData.forEach((city: any) => {
+        bulkData.push({
+          index: {
+            _index: indexName,
+            _type: 'cities_list',
+          },
+        });
+        bulkData.push(city);
+      });
+
+      // Bulk insert the documents ES Query
+      const bulkIndexDocument = await ESClient.bulk({
+        body: bulkData,
+      });
+      createResponse(res, HttpStatus.OK, res.__('Document.bulk_indexed'), bulkIndexDocument);
+    } catch (e) {
+      logger.error(__filename, 'bulkIndexDocument', '', e);
+      createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+  }
+
   public async getDocumentById(req: Request, res: Response) {
     try {
       const { indexName } = req.body;

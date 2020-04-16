@@ -62,6 +62,7 @@
 	},
 	"Document": {
 		"store": "Document added successfully!",
+		"bulk_indexed": "Document bulk indexed successfully!",
 		"deleted": "Document deleted successfully!",
 		"update": "Document updated successfully!",
 		"status_updated %s": "User %s successfully!",
