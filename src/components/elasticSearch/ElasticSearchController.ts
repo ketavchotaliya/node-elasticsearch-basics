@@ -74,11 +74,28 @@ class ElasticSearchController {
     }
   }
 
+  public async getDocumentById(req: Request, res: Response) {
+    try {
+      const { indexName, documentId } = req.body;
+
+      // get ES Document
+      const documentDetails = await ESClient.get({
+        index: indexName,
+        id: documentId,
+      });
+
+      createResponse(res, HttpStatus.OK, res.__('Document.found'), documentDetails);
+    } catch (e) {
+      logger.error(__filename, 'getDocumentById', '', e);
+      createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+  }
+  
   public async deleteDocumentById(req: Request, res: Response) {
     try {
       const { indexName, documentId } = req.body;
 
-      // add ES Document
+      // delete ES Document
       const deleteDocument = await ESClient.delete({
         index: indexName,
         id: documentId,

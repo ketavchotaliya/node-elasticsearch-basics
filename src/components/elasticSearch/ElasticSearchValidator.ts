@@ -39,7 +39,7 @@ class ElasticSearchValidator {
 
   public validateDocumentId(req: Request, res: Response, next: NextFunction) {
     const errors: any = {};
-    const { documentId } = req.body;
+    const documentId = req.body.documentId || req.params.documentId || req.query.documentId;
 
     // validation for documentId key
     if (isEmpty(documentId)) {

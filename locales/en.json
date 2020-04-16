@@ -62,7 +62,8 @@
 		"deleted": "Document deleted successfully!",
 		"update": "User updated successfully!",
 		"status_updated %s": "User %s successfully!",
-		"not_found": "User not found.",
+		"not_found": "Document not found.",
+		"found": "Document found.",
 		"already_exists": "User already exists!",
 		"deactivated": "User is not activated. Please contact your admin."
 	}

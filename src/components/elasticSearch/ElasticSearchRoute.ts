@@ -30,6 +30,14 @@ export default (app) => {
     ElasticSearchController.addDocument
   );
 
+  // get document by id
+  app.get(
+    API_PRE_FIX_V1 + ELASTICSEARCH.DOCUMENT.GET_BY_ID,
+    ElasticSearchValidator.validateIndexName,
+    ElasticSearchValidator.validateDocumentId,
+    ElasticSearchController.getDocumentById
+  );
+  
   // delete document by id
   app.delete(
     API_PRE_FIX_V1 + ELASTICSEARCH.DOCUMENT.DELETE,
