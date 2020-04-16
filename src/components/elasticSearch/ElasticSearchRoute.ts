@@ -37,6 +37,15 @@ export default (app) => {
     ElasticSearchValidator.validateDocumentId,
     ElasticSearchController.getDocumentById
   );
+
+  // update document by id
+  app.put(
+    API_PRE_FIX_V1 + ELASTICSEARCH.DOCUMENT.UPDATE,
+    ElasticSearchValidator.validateIndexName,
+    ElasticSearchValidator.validateDocumentId,
+    ElasticSearchValidator.validateDocumentBody,
+    ElasticSearchController.updateDocumentById
+  );
   
   // delete document by id
   app.delete(

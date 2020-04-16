@@ -60,7 +60,7 @@
 	"Document": {
 		"store": "Document added successfully!",
 		"deleted": "Document deleted successfully!",
-		"update": "User updated successfully!",
+		"update": "Document updated successfully!",
 		"status_updated %s": "User %s successfully!",
 		"not_found": "Document not found.",
 		"found": "Document found.",

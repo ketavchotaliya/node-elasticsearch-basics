@@ -6,7 +6,7 @@ export const ELASTICSEARCH = {
   },
   DOCUMENT: {
     ADD: '/elasticsearch/document/add',
-    UPDATE: '/elasticsearch/document/update',
+    UPDATE: '/elasticsearch/document/update/:documentId',
     DELETE: '/elasticsearch/document/delete',
     GET_BY_ID: '/elasticsearch/document/:documentId',
   },

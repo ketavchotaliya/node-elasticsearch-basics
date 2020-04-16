@@ -76,7 +76,8 @@ class ElasticSearchController {
 
   public async getDocumentById(req: Request, res: Response) {
     try {
-      const { indexName, documentId } = req.body;
+      const { indexName } = req.body;
+      const { documentId } = req.params;
 
       // get ES Document
       const documentDetails = await ESClient.get({
@@ -87,6 +88,27 @@ class ElasticSearchController {
       createResponse(res, HttpStatus.OK, res.__('Document.found'), documentDetails);
     } catch (e) {
       logger.error(__filename, 'getDocumentById', '', e);
+      createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+  }
+  
+  public async updateDocumentById(req: Request, res: Response) {
+    try {
+      const { indexName, documentBody } = req.body;
+      const { documentId } = req.params;
+
+      // update Document
+      const documentDetails = await ESClient.update({
+        index: indexName,
+        id: documentId,
+        body: {
+          doc: documentBody
+        }
+      });
+
+      createResponse(res, HttpStatus.OK, res.__('Document.update'), documentDetails);
+    } catch (e) {
+      logger.error(__filename, 'updateDocumentById', '', e);
       createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
     }
   }
