@@ -177,6 +177,23 @@ class ElasticSearchController {
       createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
     }
   }
+
+  public async queryDSL(req: Request, res: Response) {
+    try {
+      const { indexName, documentQuery } = req.body;
+
+      // Documents details
+      const documents = await ESClient.search({
+        index: indexName,
+        body: documentQuery,
+      });
+
+      createResponse(res, HttpStatus.OK, res.__('Document.found'), documents);
+    } catch (e) {
+      logger.error(__filename, 'queryDSL', '', e);
+      createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+  }
 }
 
 export default new ElasticSearchController();

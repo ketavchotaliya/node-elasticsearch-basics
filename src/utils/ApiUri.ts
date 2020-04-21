@@ -11,6 +11,7 @@ export const ELASTICSEARCH = {
     DELETE_BY_QUERY: '/elasticsearch/document/delete/by/query',
     GET_BY_ID: '/elasticsearch/document/:documentId',
     BULK_INDEX: '/elasticsearch/document/bulk/index',
+    SEARCH: '/elasticsearch/document',
   },
 };
 

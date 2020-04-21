@@ -69,4 +69,12 @@ export default (app) => {
     ElasticSearchValidator.validateIndexName,
     ElasticSearchController.bulkIndexDocument
   );
+
+  // Compound Query
+  app.post(
+    API_PRE_FIX_V1 + ELASTICSEARCH.DOCUMENT.SEARCH,
+    ElasticSearchValidator.validateIndexName,
+    ElasticSearchValidator.validateDocumentQuery,
+    ElasticSearchController.queryDSL
+  );
 };
