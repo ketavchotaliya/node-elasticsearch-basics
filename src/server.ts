@@ -21,8 +21,15 @@ const ES_Host: string = process.env.ES_HOST || 'http://localhost:9200';
 
 export const ESClient = new Client({ node: ES_Host });
 
-server.listen(port, () => {
-  logger.info(__filename, ``, ``, ``, `Server is running on ${port}`);
+ESClient.ping({}, function (err) {
+  if (err) {
+    logger.error(__filename, 'Server', '', 'elasticsearch cluster is down!', err);
+  } else {
+    logger.info(__filename, 'Server', '', 'Elasticsearch cluster is connected!');
+    server.listen(port, () => {
+      logger.info(__filename, ``, ``, ``, `Server is running on ${port}`);
+    });
+  }
 });
 
 function exitHandler() {
