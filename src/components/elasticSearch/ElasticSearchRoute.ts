@@ -10,6 +10,14 @@ export default (app) => {
     ElasticSearchController.createIndex
   );
 
+  // add mapping to Elasticsearch Index
+  app.post(
+    API_PRE_FIX_V1 + ELASTICSEARCH.INDEX.MAPPING,
+    ElasticSearchValidator.validateIndexName,
+    ElasticSearchValidator.validateMappingObject,
+    ElasticSearchController.createIndexMapping
+  );
+
   // Drop Index
   app.delete(
     API_PRE_FIX_V1 + ELASTICSEARCH.INDEX.DELETE,
@@ -46,7 +54,7 @@ export default (app) => {
     ElasticSearchValidator.validateDocumentBody,
     ElasticSearchController.updateDocumentById
   );
-  
+
   // delete document by id
   app.delete(
     API_PRE_FIX_V1 + ELASTICSEARCH.DOCUMENT.DELETE,
@@ -54,7 +62,7 @@ export default (app) => {
     ElasticSearchValidator.validateDocumentId,
     ElasticSearchController.deleteDocumentById
   );
-  
+
   // delete document by query
   app.delete(
     API_PRE_FIX_V1 + ELASTICSEARCH.DOCUMENT.DELETE_BY_QUERY,
@@ -62,7 +70,7 @@ export default (app) => {
     ElasticSearchValidator.validateDocumentQuery,
     ElasticSearchController.deleteDocumentByQuery
   );
-  
+
   // bulk index the document
   app.post(
     API_PRE_FIX_V1 + ELASTICSEARCH.DOCUMENT.BULK_INDEX,

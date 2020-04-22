@@ -7,6 +7,9 @@
 		"documentBody": {
 			"required": "Document Body is required."
 		},
+		"mappingObject": {
+			"required": "Mapping Object is required."
+		},
 		"documentQuery": {
 			"required": "Document Query is required."
 		},
@@ -58,7 +61,8 @@
 	"Index": {
 		"store": "Index added successfully!",
 		"not_found": "Index not found!",
-		"deleted": "Index deleted!"
+		"deleted": "Index deleted!",
+		"mapping": "Index mapping successfully!"
 	},
 	"Document": {
 		"store": "Document added successfully!",

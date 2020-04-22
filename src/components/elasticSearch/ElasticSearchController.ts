@@ -25,6 +25,24 @@ class ElasticSearchController {
       createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
     }
   }
+  
+  public async createIndexMapping(req: Request, res: Response) {
+    try {
+      const { indexName, mappingObject } = req.body;
+
+      // create elasticsearch index
+      await ESClient.indices.putMapping({
+        index: indexName,
+        type: indexName,
+        body: mappingObject
+      });
+
+      createResponse(res, HttpStatus.OK, res.__('Index.mapping'));
+    } catch (e) {
+      logger.error(__filename, 'createIndexMapping', '', e);
+      createResponse(res, HttpStatus.INTERNAL_SERVER_ERROR, HttpStatus.getStatusText(HttpStatus.INTERNAL_SERVER_ERROR));
+    }
+  }
 
   public async deleteIndex(req: Request, res: Response) {
     try {

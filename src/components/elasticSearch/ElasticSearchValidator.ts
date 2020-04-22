@@ -21,6 +21,22 @@ class ElasticSearchValidator {
     }
   }
 
+  public validateMappingObject(req: Request, res: Response, next: NextFunction) {
+    const errors: any = {};
+    const { mappingObject } = req.body;
+
+    // validation for mappingObject key
+    if (isEmpty(mappingObject)) {
+      errors.mappingObject = res.__('VALIDATIONS.mappingObject.required');
+    }
+
+    if (Object.keys(errors).length > 0) {
+      createValidationResponse(res, errors);
+    } else {
+      next();
+    }
+  }
+
   public validateDocumentBody(req: Request, res: Response, next: NextFunction) {
     const errors: any = {};
     const { documentBody } = req.body;
